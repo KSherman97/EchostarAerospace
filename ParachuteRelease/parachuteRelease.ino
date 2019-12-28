@@ -37,8 +37,8 @@ float lastVel = 0;
 int bp_success = 1; // if all devices are found
 int bp_fail = 2;    // if sensor is not found
 
-const int tickSec = 0.5;
-const int tickMS = tickSec*1000;
+const float tickSec = 1;
+const float tickMS = tickSec*1000;
 
 boolean running = true;
 
@@ -46,8 +46,8 @@ void setup() {
 
   //tone(spkr_pin, 1000, 2000);
   
-  Serial.begin(115200); // establish the serial stream
-  // Wire.begin();       // initialize the sensor
+  Serial.begin(9600); // establish the serial stream
+  Wire.begin();       // initialize the sensor
   
   delay(2000);
   servo.attach(serv_pin); // sets the servo to pin d9
@@ -81,16 +81,15 @@ void loop() {
 
   //Serial.print(a,2);
   //Serial.print(",");
-  Serial.print("Altitude ");
+  Serial.print(" Altitude ");
   Serial.print(a_filter,2);
-  Serial.print(" m");
-  Serial.print(",");
-  Serial.print("Velocity ");
+  Serial.print(" m ");
+  Serial.print(" Velocity ");
   Serial.print(vel, 2);
-  Serial.print(" m/s");
+  Serial.print(" m/s ");
   Serial.print(accel, 2);
   Serial.print(" m/s^2 ");
-  Serial.print("Count: ");
+  Serial.print(" Count: ");
   Serial.print(rCounter); 
   Serial.println();
 

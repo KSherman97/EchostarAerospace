@@ -37,7 +37,8 @@ float lastVel = 0;
 int bp_success = 1; // if all devices are found
 int bp_fail = 2;    // if sensor is not found
 
-const int tick = 1000;
+const int tickSec = 0.5;
+const int tickMS = tickSec*1000;
 
 boolean running = true;
 
@@ -109,18 +110,18 @@ void loop() {
 
   lastAlt = a_filter;
   lastVel = vel;
-  delay(tick);
+  delay(tickMS);
 }
 
 double getVelocity(float last, float next){
   float v, lastAlt = last, nextAlt = next;
-  v = ((nextAlt-lastAlt)/1);
+  v = ((nextAlt-lastAlt)/(tickSec));
   return v;
 }
 
 double getAcceleration(float last, float next) {
   float a, lastVel = last, nextVel = next;
-  a = ((nextVel - lastVel)/1);
+  a = ((nextVel - lastVel)/(tickSec));
   return a;
 }
 
